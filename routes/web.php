@@ -1,11 +1,9 @@
 <?php
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::pattern('student_no','s[0-9]{10}');
-/*Route::get('student/{student_no}',function($student_no){
+Route::get('/','HomeController@index');
+/*Route::pattern('student_no','s[0-9]{10}');
+Route::get('student/{student_no}',function($student_no){
     return "學號:".$student_no;
 });
 Route::get('student/{student_no}/score',function($student_no){
@@ -16,7 +14,7 @@ Route::get('student/{student_no}/score/{subject?}',function($student_no,$subject
 })->where(['student_no'=>'s[0-9]{10}','subject'=>'(chinese|english|math)']);*/
 
 
-Route::group(['prefix'=>'student'],function(){
+/*Route::group(['prefix'=>'student'],function(){
     Route::get('{student_no}',[
             'as'=>'student',
             'uses'=>function($student_no){
@@ -30,4 +28,4 @@ Route::group(['prefix'=>'student'],function(){
         }
     ])->where(['student_no'=>'s[0-9]{10}','subject'=>'(chinese|english|math)']);
     
-});
+});*/

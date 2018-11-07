@@ -7,9 +7,10 @@ Route::get('/','HomeController@index');
 
 Route::get('cool','Cool\TestController@index');
 
-Route::resource('board','BoardController@getIndex');
-/*Route::pattern('student_no','s[0-9]{10}');
-Route::get('student/{student_no}',function($student_no){
+Route::get('/board','BoardController@getIndex');
+
+
+/*Route::get('student/{student_no}',function($student_no){
     return "學號:".$student_no;
 });
 Route::get('student/{student_no}/score',function($student_no){
@@ -20,15 +21,16 @@ Route::get('student/{student_no}/score/{subject?}',function($student_no,$subject
 })->where(['student_no'=>'s[0-9]{10}','subject'=>'(chinese|english|math)']);*/
 
 
-Route::group(['prefix'=>'student'],function(){
+
+
+Route::pattern('student_no','s[0-9]{10}');
+Route::group(['prefix'=>'student'],function() {
     Route::get('{student_no}',[
-            'as'=>'student',
-            'uses'=>'StudentController@getStudentData'
-        
+        'as'=>'student',
+        'uses'=>'StudentController@getStudentData'
     ]);
-    Route::get('{student_no}/score/{subject?}',[
+    Route::get('{student_no}/score/{subject?}', [
         'as'=>'student.score',
         'uses'=>'StudentController@getStudentScore'
-    ])->where(['student_no'=>'s[0-9]{10}','subject'=>'(chinese|english|math)']);
-    
+        ])->where(['subject'=>'(chinese|english|math)']);
 });

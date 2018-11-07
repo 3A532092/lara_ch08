@@ -9,6 +9,6 @@ class BoardController extends Controller
 {
     //
     public function getIndex(){
-        return View::make('board');
+        return view('board');
     }
 }
